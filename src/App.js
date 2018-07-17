@@ -1,33 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import styled from 'styled-components';
-
-import './App.css';
-
-const TestDiv = styled.div`
-    width: 150px;
-    height: 150px;
-    background-color: red;
-    position: absolute;
-    left: 0;
-    top: 0;
-`;
+import { Route, Switch, withRouter } from 'react-router-dom';
+import HomePage from './HomePage/HomePage';
+import SecondPage from './SecondPage/SecondPage';
+import ServerPage from './ServerPage/ServerPage';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <TestDiv />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+    render() {
+        return (
+            <Switch>
+                <Route
+                    exact
+                    path={'/'}
+                    component={HomePage}
+                />
+                <Route path={'/second'} component={SecondPage} />
+                <Route path={'/server'} component={ServerPage} />
+            </Switch>
+        );
+    }
 }
 
-export default App;
+export default withRouter((App));
