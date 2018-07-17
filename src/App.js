@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import HomePage from './HomePage/HomePage';
 import SecondPage from './SecondPage/SecondPage';
 import ServerPage from './ServerPage/ServerPage';
+import NotFound from './components/NotFound';
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
                 />
                 <Route path={'/second'} component={SecondPage} />
                 <Route path={'/server'} component={ServerPage} />
+                <Route component={NotFound} />
             </Switch>
         );
     }
