@@ -1,6 +1,6 @@
 import express from 'express';
 
-// we'll talk about this in a minute:
+// server renderer
 import serverRenderer from './middleware/renderer';
 
 const PORT = 3004;
@@ -12,7 +12,7 @@ const router = express.Router();
 
 // root (/) should always serve our server rendered page
 // router.use('^/$', serverRenderer);
-//router.use('*', serverRenderer);
+// router.use('*', serverRenderer);
 
 // other static resources should just be served as they are
 router.use(express.static(
@@ -20,7 +20,10 @@ router.use(express.static(
     { maxAge: '30d' },
 ));
 
-// router.get('/server', serverRenderer);
+router.get('/server', serverRenderer);
+router.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+});
 
 // tell the app to use the above rules
 app.use(router);
